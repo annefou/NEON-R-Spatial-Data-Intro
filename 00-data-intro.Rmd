@@ -12,18 +12,14 @@ description: "This lesson introduces spatial and temporal data."
 code1:
 permalink: /data-lessons/NEON-R-Spatial-Data-Intro/
 comments: true
-
+toctitle: "Contents"
+output:
+  html_document:
+    template: toctitle.html
+    toc: true
+    toc_depth: 3
 ---
 
-<section id="table-of-contents" class="toc">
-  <header>
-    <h3>Contents</h3>
-  </header>
-<div id="drawer" markdown="1">
-*  Auto generated table of contents
-{:toc}
-</div>
-</section><!-- /#table-of-contents -->
 
 ##About
 This lesson will introduce spatial and temporal data.
@@ -35,26 +31,20 @@ This lesson will introduce spatial and temporal data.
 <h3>Goals / Objectives</h3>
 After completing this activity, you will:
 <ol>
-<li>Know the definition of spatial data
-<li>understand that spatial data come in many forms and formats
-<li>understand what the spatial data structure types are - raster and vector
-<li>understand what raster data are
-<li>understand what vector data are
-<li>understand that the data types are implemented differently
-<li>understand that you need special tools to be able to access spatial data
-<li>understand that working with different file types requires different tools
-
-<li>understand that you can have multiple data and file types for a single area
-<li>understand that you can look at datasets individually or in combination
-
-
-<li>understand that there is necessary metadata associated with and/or embedded in the data
-<li>understand that collecting data requires/includes collecting the metadata
-
-<li>understand that there is potentially ancillary data associated with individual elements (like NEON tower data (point), road (line), watershed (polygon))
-
-<li>understand that you also can work with data over time for the same area. You can ask question over time using spatial data. (incl timestamp mention here?)
-
+<li>Know the definition of spatial data</li>
+<li>understand that spatial data come in many forms and formats</li>
+<li>understand what the spatial data structure types are - raster and vector</li>
+<li>understand what raster data are</li>
+<li>understand what vector data are</li>
+<li>understand that the data types are implemented differently</li>
+<li>understand that you need special tools to be able to access spatial data</li>
+<li>understand that working with different file types requires different tools</li>
+<li>understand that you can have multiple data and file types for a single area</li>
+<li>understand that you can look at datasets individually or in combination</li>
+<li>understand that there is necessary metadata associated with and/or embedded in the data</li>
+<li>understand that collecting data requires/includes collecting the metadata</li>
+<li>understand that there is potentially ancillary data associated with individual elements (like NEON tower data (point), road (line), watershed (polygon))</li>
+<li>understand that you also can work with data over time for the same area. You can ask question over time using spatial data. (incl timestamp mention here?)</li>
 </ol>
 
 <h3>Things You'll Need To Complete This Lesson</h3>
@@ -73,29 +63,45 @@ After completing this activity, you will:
 
 </div>
 
+------
 ## About spatial data
 
-Starting exercise:  
+<h4>Starting exercise</h4>  
+
 With the person next to you, take just one minute and discuss what you think are examples of spatial data and why.
 
-What are some of the examples you came up with? What makes these
-examples of spatial data?
+<ul>
+<li>What are some of the examples you came up with?</li>
+<li>What makes these examples of spatial data?</li>
+</ul>
 
-Spatial data are any data that have geographical coordinates associated with them.
+<i>Spatial data are any data that have geographical coordinates associated with them.</i>
 
-What is a coordinate system?
-Tells you where you are on the surface of the Earth
-To tell you where you are, you need three pieces of information
-- ellipsoid, projection datum
+<ul>
+<li>What is a coordinate system?</li>
+</ul>
+
+<i>Tells you where you are on the surface of the Earth</i>
+
+To tell you where you are, you need three pieces of information:
+<ul>
+<li>ellipsoid, </li>
+<li>projection, </li>
+<li>datum</li>
+</ul>
 
 Think about a globe of the earth. It's a 3D ellipsoid. You don't work with globes though, instead we work with maps, 2D representations of the earth or areas of the earth. To move from that 3D to the 2D representation, we need
 to know certain things about how that projection was done.
 
-You need to know what model of the earth you're using, (ellipsoid) how you've created your 2D map from the 3D earth (projection) and what's the central reference  point of the map (datum).
+<ul>
+<li>You need to know what model of the earth you're using, (ellipsoid)</li> 
+<li>how you've created your 2D map from the 3D earth (projection)</li>
+<li>and what's the central reference  point of the map (datum).</li>
+</ul>
 
-When you're working with spatial data, you want all the maps that you're working with to employ the same coordinate system.
+When you're working with spatial data, you usually want all the maps that you're working with to employ the same coordinate system.
 
-Lattitude and longitude is a coordinate system, because it does tell you where you are on the earth. But, because it's dealing with the 3D earth, it doesn't have a projection. It does have a datum, which is 0 longitude, 0 latitude, where the Prime Meridian and Equator meet.
+Latitude and longitude is a coordinate system, because it does tell you where you are on the earth. But, because it's dealing with the 3D earth, it doesn't have a projection. It does have a datum, which is 0 longitude, 0 latitude, where the Prime Meridian and Equator meet.
 
 Another unit system is Northings and Eastings, and this is often used with GPS units. In this coordinate system, the ellipsoid is WGS84 (link to WGS84 and/or a list of types), the projection is Universal Transverse Mercator (UTM) and the datum varies depending on where you are. In the US it's usually NAD83.
 
@@ -115,7 +121,7 @@ like one or the other. It can seem a little overwhelming, but these data types w
 
 There are two broad categories of spatial data - raster and vector.
 
-**Raster**  
+####Raster
 
 - In a grid
 - In rows and columns
@@ -123,11 +129,27 @@ There are two broad categories of spatial data - raster and vector.
 - Every grid represents a single variable - it's just measuring one thing, like elevation would be one file and soil temperature would be another file.
 - The resolution or grid cell size can be different sizes between files
 
---- Picture of raster grid sizes
 
-Maybe the Harvard forest DVM
+![alt text](images/lessons/raster_gridsizes.png)
+--- Same raster image but with different grid sizes
 
-**Vector**
+
+***Advantages of using raster data format***
+
+<ul>
+<li>The geographic location of each grid point is defined by its position in the 2D grid.</li>
+<li> Due to the nature of the data storage technique data analysis is usually easy to program and quick to perform. </li>
+<li>Suitable for analysis of multi-layer or multivariate data (e.g., satellite image processing and analysis)</li>
+</ul>
+
+***Disadvantages of raster data format***
+<ul> 
+<li>The cell size determines the resolution at which the data is represented.; It is especially difficult to adequately represent linear features depending on the cell resolution. </li>
+<li>unapproriate cell size may trigger problems</li>
+<li>disk space can become an issue as the entire grid needs to be stored.</li>
+</ul>
+
+####Vector
 
 - points, lines or polygons
 - not spatially extensive
