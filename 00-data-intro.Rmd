@@ -81,17 +81,20 @@ With the person next to you, take just one minute and discuss what you think are
 <li>What is a coordinate system?</li>
 </ul>
 
-<i>Tells you where you are on the surface of the Earth</i>
+
+<i>It tells you where you are on the surface of the Earth.</i> 
+
 
 To tell you where you are, you need three pieces of information:
+
 <ul>
 <li>ellipsoid, </li>
 <li>projection, </li>
 <li>datum</li>
 </ul>
 
-Think about a globe of the earth. It's a 3D ellipsoid. You don't work with globes though, instead we work with maps, 2D representations of the earth or areas of the earth. To move from that 3D to the 2D representation, we need
-to know certain things about how that projection was done.
+
+Think about a globe of the earth. It's a 3D ellipsoid (simplified model of Earth's shape). You don't work with globes though, instead we work with maps, 2D representations of the earth or areas of the earth. To move from that 3D to the 2D representation, we need to know certain things about how that projection was done.
 
 <ul>
 <li>You need to know what model of the earth you're using, (ellipsoid)</li> 
@@ -101,15 +104,40 @@ to know certain things about how that projection was done.
 
 When you're working with spatial data, you usually want all the maps that you're working with to employ the same coordinate system.
 
-Latitude and longitude is a coordinate system, because it does tell you where you are on the earth. But, because it's dealing with the 3D earth, it doesn't have a projection. It does have a datum, which is 0 longitude, 0 latitude, where the Prime Meridian and Equator meet.
+Not having the correct information on the coordinate system used may lead to dramatic errors!
 
-Another unit system is Northings and Eastings, and this is often used with GPS units. In this coordinate system, the ellipsoid is WGS84 (link to WGS84 and/or a list of types), the projection is Universal Transverse Mercator (UTM) and the datum varies depending on where you are. In the US it's usually NAD83.
+<div class="centered" style="width:300px">
+![misalignment of the rails](images/lessons/misalignment-of-the-rails.jpg)
+</div>
+
+Image from https://foundonweb.files.wordpress.com/2014/06/misalignment-of-the-rails.jpg
+
+
+There are many different coordinate systems but two major categories:
+<ol>
+<li>Geographic coordinate systems (no projection)</li>
+<li>Projected coordinate systems</li> 
+</ol>
+
+###Geographic coordinate systems
+Latitude and longitude is a coordinate system, because it does tell you where you are on the earth. But, because it's dealing with the 3D earth, it doesn't have a projection. It does have a datum, which is 0 longitude, 0 latitude, where the Prime Meridian and Equator meet.
+<div class="centered" style="width:300px">
+![Greenwich_meridian](images/lessons/Greenwich-Meridian.jpg)
+</div>
+
+###Projected coordinate systems
+Another unit system is Northings and Eastings, and this is often used with GPS units. In this coordinate system, the ellipsoid is [WGS84](http://earth-info.nga.mil/GandG/wgs84/index.html), the projection is Universal Transverse Mercator [UTM](http://earth-info.nga.mil/GandG/coordsys/grids/universal_grid_system.html) and the datum varies depending on where you are. In the US it's usually [NAD83](https://en.wikipedia.org/wiki/North_American_Datum) (North America Datum 1983).
 
 If you were at the Washington Monument in Washington DC for example, you would report your Northings and Eastings coordinates as:
 
-XXX m North, YYY m East, UTM Zone 18
-and that says that you're XXX m north and YYY m East of the zero point for Zone 18, which is the lower left of that zone.
+4,306,481.40 m North, 323479.84 m East, UTM Zone 18S
 
+and that says that you're 4,306,481.40 m north and 323479.84 m East of the zero point for Zone 18, which is the lower left of that zone. 
+
+
+<div class="centered" style="width:300px">
+![Washington Monument](images/lessons/WM_UTMGridZone.png)
+</div>
 Picture of the Washington monument in Zone 18
 
 Once you know all this information, you can convert site location between coordinate systems.
@@ -156,6 +184,7 @@ There are two broad categories of spatial data - raster and vector.
 - used if you want to measure particular features in an area
 - examples, a point is a tower, a line is a transect, river or road and a polygon is a water shed
 - you can have more than one measured variable for each element
+
 
 --- picture of vector data
 
@@ -212,6 +241,8 @@ All these different data types and series can be combined or compared.
 more on coordinate systems:
 - http://docs.qgis.org/2.0/en/docs/gentle_gis_introduction/coordinate_reference_systems.html
 - http://docs.qgis.org/2.0/en/docs/gentle_gis_introduction/coordinate_reference_systems.html#coordinate-reference-system-crs-in-detail
+-http://earth-info.nga.mil/GandG/coordsys/http://earth-info.nga.mil/GandG/coordsys/grids/universal_grid_system.html
+- https://www.fgdc.gov/usng/how-to-read-usng
 
 more on file types:
 - https://en.wikipedia.org/wiki/GIS_file_formats
